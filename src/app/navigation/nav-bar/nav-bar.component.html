@@ -1,0 +1,30 @@
+<header>
+    <nav class="navbar navbar-light bg-light p-3">
+        <div class="container-fruid">
+            <a [routerLink]="['']" class="navbar-brand">Clothing Store</a>
+        </div>
+
+        <ng-template [ngIf]="false">
+            <ul class="navbar-nav mr-1">
+                <li class="nav-item">
+                    <button class="btn btn-success mr-2" [routerLink]="['/gardens/my']">Gardens</button>
+                </li>
+            </ul>
+        </ng-template>
+        
+        <div class="container-fruid pr-3 d-block">
+            <div *ngIf="authService.isLoggedIn" class="d-inline">
+                <button class="btn btn-info mr-2" [routerLink]="['/cabinet']" >
+                    <p class="h6 d-inline">{{user.fullName}}</p>
+                </button>
+                <button class="btn btn-secondary" (click)="logout()" [routerLink]="['/sign-in']" >
+                    <p class="h6 d-inline">Logout</p>
+                </button>
+            </div>
+            <div *ngIf="!authService.isLoggedIn" class="d-inline">
+                <button class="btn btn-outline-secondary mr-2" [routerLink]="['/sign-up']">Sign Up</button>
+                <button class="btn btn-outline-secondary mr-2" [routerLink]="['/sign-in']">Login</button>
+            </div>
+        </div>
+    </nav>
+</header>

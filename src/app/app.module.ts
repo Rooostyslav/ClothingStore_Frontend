@@ -12,11 +12,19 @@ import { SignInComponent } from './auth/sign-in/sign-in.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CLOTHING_STORE_API, CLOTHING_STORE_AUTH_API } from './app-injections-tokens';
 import { AuthInterceptor } from 'src/interseptors/auth-interceptor';
+import { ProductListComponent } from './product/product-list/product-list.component';
+import { NavBarComponent } from './navigation/nav-bar/nav-bar.component';
+import { NewProductComponent } from './product/new-product/new-product.component';
+import { ProductImageService } from 'src/services/product-image.service';
+import { FileService } from 'src/services/common/file.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SignInComponent
+    SignInComponent,
+    ProductListComponent,
+    NavBarComponent,
+    NewProductComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +36,8 @@ import { AuthInterceptor } from 'src/interseptors/auth-interceptor';
     AuthService,
     EmployeeService,
     ProductService,
+    ProductImageService,
+    FileService,
     { provide: CLOTHING_STORE_API, useValue: environment.clothingStoreApi },
     { provide: CLOTHING_STORE_AUTH_API, useValue: environment.clothingStoreAuthApi },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

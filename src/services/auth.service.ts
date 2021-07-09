@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { CLOTHING_STORE_AUTH_API } from 'src/app/app-injections-tokens';
+import { CLOTHING_STORE_API, CLOTHING_STORE_AUTH_API } from 'src/app/app-injections-tokens';
 import { Login } from 'src/models/auth/login';
 import { tap } from 'rxjs/operators';
+import { User } from 'src/models/user/user';
+import { Observable } from 'rxjs';
 
 export const ACCESS_TOKEN_KEY = 'ACCESS_TOKEN_KEY';
 
@@ -17,15 +19,20 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     @Inject(CLOTHING_STORE_AUTH_API) private baseAuthApiUrl: string,
+    @Inject(CLOTHING_STORE_API) private baseApiUrl: string,
     private router: Router
   ) { }
 
   get isLoggedIn(): boolean {
-    return localStorage.getItem(ACCESS_TOKEN_KEY) != null;
+    return this.getToken() != null;
   }
 
   getToken() {
     return localStorage.getItem(ACCESS_TOKEN_KEY);
+  }
+
+  getAuthUser(): Observable<User> {
+    return this.http.get<User>(this.baseApiUrl + '/api/my/info');
   }
 
   login(login: Login) {
