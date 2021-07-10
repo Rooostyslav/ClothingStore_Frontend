@@ -19,7 +19,6 @@ export class ProductListComponent implements OnInit {
     private productService: ProductService,
     private productImageService: ProductImageService
   ) {
-
   }
 
   ngOnInit(): void {
@@ -51,19 +50,17 @@ export class ProductListComponent implements OnInit {
   getImages() {
     for(let product of this.products) {
       if (product.photoIds.length > 0) {
+        product.photos = [];
         this.productImageService.getImage(product.photoIds[0])
           .subscribe(result => {
             var reader:FileReader = new FileReader();
             reader.onloadend = (e) => {
               if (reader.result != null) {
-                product.image = reader.result.toString();
+                product.photos = [reader.result.toString()];
               }
             }
             reader.readAsDataURL(result);
           });
-      }
-      else {
-        product.image = "";
       }
     }
   }

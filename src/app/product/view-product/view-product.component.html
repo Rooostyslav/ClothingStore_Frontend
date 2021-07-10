@@ -1,3 +1,36 @@
 <app-nav-bar></app-nav-bar>
 
-<p>view-product works!</p>
+<div class="container">
+    <div class="row">
+      <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div *ngFor="let photo of product.photos" class="carousel-item" [class.active]="product.photos[0] == photo">
+            <img [src]="photo" class="d-block" alt="image">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+      <h4 class="h4 mt-3">{{product.name}}</h4>
+      <h5 class="mt-2">Description</h5>
+      <p>{{product.description}}</p>
+
+      <h5 class="mt-2">Category</h5>
+      <p>{{product.category}}</p>
+
+      <h5 *ngIf="isAdmin" class="mt-2">Is active?</h5>
+      <p>{{product.isActive}}</p>
+
+      <h5 class="mt-2">Price</h5>
+      <p class="text-danger h3">{{product.price}} $</p>
+
+      <button class="btn btn-success mt-2" (click)="addToShoppingCard(product.id)">Add to Shopping Card</button>
+    </div>
+</div>

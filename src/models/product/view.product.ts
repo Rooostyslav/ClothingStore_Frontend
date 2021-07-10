@@ -4,8 +4,8 @@ export interface ViewProduct {
     description: string;
     categoryId: number;
     category: string;
-    isActive: string;
+    isActive: boolean;
     price: number;
     photoIds: number[];
-    image: string;
+    photos: string[];
 }
