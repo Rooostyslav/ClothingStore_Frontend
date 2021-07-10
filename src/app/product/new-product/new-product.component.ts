@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { CreateCategory } from 'src/models/category/create.category';
 import { ViewCategory } from 'src/models/category/view.category';
 import { CreateProduct } from 'src/models/product/create.product';
 import { CategoryService } from 'src/services/category.service';
@@ -13,6 +14,11 @@ import { ProductService } from 'src/services/product.service';
 })
 export class NewProductComponent implements OnInit {
   
+  addNewCategory: boolean = false;
+  category: CreateCategory = {
+    name: ''
+  };
+
   categories: ViewCategory[] = [];
   images: string[] = [];
   productId: number | undefined;
@@ -22,7 +28,7 @@ export class NewProductComponent implements OnInit {
     description: '',
     isActive: false,
     price: 0
-  }
+  };
 
   constructor(
     private productService: ProductService,
@@ -84,6 +90,15 @@ export class NewProductComponent implements OnInit {
       counter++;
       console.log(counter + '/' + this.images.length);
     }
+  }
+
+  onSubmitCreateCategory() {
+    this.categoryService.createCategory(this.category)
+      .subscribe(result => {
+        this.addNewCategory = false;
+        this.categories.push(result);
+        alert("Success create category " + result.name + " !");
+      });
   }
 
   onSubmit() {

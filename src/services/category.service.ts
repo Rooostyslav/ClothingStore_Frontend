@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CLOTHING_STORE_API } from 'src/app/app-injections-tokens';
+import { CreateCategory } from 'src/models/category/create.category';
 import { ViewCategory } from 'src/models/category/view.category';
 
 @Injectable({
@@ -18,5 +19,9 @@ export class CategoryService {
 
   getAllCategories(): Observable<ViewCategory[]> {
     return this.http.get<ViewCategory[]>(this.categoryApiUrl);
+  }
+
+  createCategory(category: CreateCategory): Observable<ViewCategory> {
+    return this.http.post<ViewCategory>(this.categoryApiUrl, category);
   }
 }
