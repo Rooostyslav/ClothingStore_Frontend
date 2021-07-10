@@ -1,3 +1,20 @@
 <app-nav-bar></app-nav-bar>
 
-<button class="btn btn-danger" [routerLink]="['/products/new']">Create new product</button>
+<div class="container">
+    <h3 class="mt-2">Products</h3>
+    <button *ngIf="isAdmin" class="btn btn-danger mt-2 mb-2" [routerLink]="['/products/new']">Create new product</button>
+
+    <div class="row">
+        <div *ngFor="let product of products" class="card col-3 m-2" style="width: 18rem;">
+            <p><a [routerLink]="['/products/' + product.id]">
+                <img [src]="product.image" class="card-img-top" alt="image" width="150px" height="250px">
+            </a></p>
+            <div class="card-body">
+              <h5 class="card-title" [routerLink]="['/products/' + product.id]">{{product.name}}</h5>
+              <p *ngIf="product.description" class="card-text">{{product.description}}</p>
+              <p class="h4 text-danger">{{product.price}} $</p>
+              <a href="#" class="btn btn-primary">Add to Shopping Cart</a>
+            </div>
+        </div>
+    </div>
+</div>

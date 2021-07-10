@@ -23,15 +23,16 @@ export class NavBarComponent implements OnInit {
     private router: Router,
     public authService: AuthService
   ) {
+  }
+
+  ngOnInit(): void {
     if (this.authService.isLoggedIn) {
       this.authService.getAuthUser()
         .subscribe(result => {
           this.user = result;
+          console.log(result);
         });
     }
-  }
-
-  ngOnInit(): void {
   }
 
   logout() {

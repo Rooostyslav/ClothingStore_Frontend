@@ -6,4 +6,6 @@ export interface ViewProduct {
     category: string;
     isActive: string;
     price: number;
+    photoIds: number[];
+    image: string;
 }

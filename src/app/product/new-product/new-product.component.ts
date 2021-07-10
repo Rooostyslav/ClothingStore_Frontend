@@ -1,4 +1,5 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CreateCategory } from 'src/models/category/create.category';
 import { ViewCategory } from 'src/models/category/view.category';
 import { CreateProduct } from 'src/models/product/create.product';
@@ -31,6 +32,7 @@ export class NewProductComponent implements OnInit {
   };
 
   constructor(
+    private router: Router,
     private productService: ProductService,
     private productImageService: ProductImageService,
     private categoryService: CategoryService,
@@ -106,6 +108,7 @@ export class NewProductComponent implements OnInit {
       .subscribe(result => {
         this.productId = result.id;
         this.uploadPhotos();
+        this.router.navigate(['/products']);
       });
   }
 }

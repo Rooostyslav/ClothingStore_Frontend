@@ -18,6 +18,7 @@ import { NewProductComponent } from './product/new-product/new-product.component
 import { ProductImageService } from 'src/services/product-image.service';
 import { FileService } from 'src/services/common/file.service';
 import { NewCategoryComponent } from './category/new-category/new-category.component';
+import { ViewProductComponent } from './product/view-product/view-product.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { NewCategoryComponent } from './category/new-category/new-category.compo
     ProductListComponent,
     NavBarComponent,
     NewProductComponent,
-    NewCategoryComponent
+    NewCategoryComponent,
+    ViewProductComponent
   ],
   imports: [
     BrowserModule,
